@@ -1,0 +1,46 @@
+div.principal .block
+{
+
+/*    background-image: url("../img/noConnection.jpeg") ;*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    display:inline-block;
+    line-height: 3;
+    font-size: 33%;
+
+    text-align: center;  
+
+    box-sizing: border-box;
+    border:10px black solid;
+        
+    transition: border 0.4s;
+    
+}
+
+
+div.principal .block:before {
+  content:'';
+  display:inline-block;
+  width:0;
+  vertical-align:sub;
+  padding:50% 0;
+}
+
+div.block:hover {
+    border: 1px white solid;
+    background-size: contain;
+    
+    
+}
+
+
+
+div.principal
+{
+    background: black;
+    font-size: 0px;
+    height:auto;
+
+}

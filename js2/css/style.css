@@ -1,0 +1,12 @@
+body
+{
+    margin: 0px;
+    background:black;
+}
+
+canvas
+{
+    margin-left:auto;
+    margin-right:auto;
+    display:table;
+}

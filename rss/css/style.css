@@ -1,0 +1,258 @@
+/*.article{*/
+.contener{
+    
+    margin-bottom:10px;
+    max-height:1000px;
+    transform-origin: 50% 0;
+    transform: scaleY(1);
+    transition:all 0.7s ease;
+}
+
+
+div#feed
+{
+    position: fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    width:30%;
+
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+div.flux > input{
+    width :100%;    
+}
+
+div.flux > button
+{
+    width:100%;
+}
+
+
+
+div.mainTextReader
+{
+    position: fixed;
+    top:0px;
+    bottom:0px;
+    right:20%;
+    left:30%;
+    width:50%;
+}
+
+
+div.mainTextReader > div.textArcticle
+{
+    top:0px;
+    bottom:0px;
+    width:100%;
+    position:absolute;
+}
+
+
+div.textArcticle{
+    overflow:scroll;
+    overflow-x:hidden;
+}
+
+
+/* -------------------------------------------------------------- */
+/* --------------------flux prop--------------------------------- */
+/* -------------------------------------------------------------- */
+
+div.flux > h3
+{
+    text-align:center;
+    padding-top:10px;
+}
+
+div.flux > h5
+{
+    text-align:center;
+}
+
+div.flux{
+    box-shadow: 0px 0px 0px 0px #656565;
+    transition: box-shadow 0.7s;
+
+    background:#777777;
+    color:white;		   
+
+    -moz-animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+
+    -moz-animation-name: slidein;
+    -webkit-animation-name: slidein;
+    animation-name: slidein;
+
+    overflow:hidden;
+
+    margin-right:5px;
+    margin-left:5px;    
+
+}
+
+
+div.flux:hover
+	     {
+		 background:#999999;
+		 -moz-box-shadow: 10px 10px 5px 0px #656565;
+		 -webkit-box-shadow: 10px 10px 5px 0px #656565;
+		 -o-box-shadow: 10px 10px 5px 0px #656565;
+		 box-shadow: 2px 3px 2px 3px #656565;
+	     }
+
+
+
+div.contener.hide/* >  div.article*/
+{
+  max-height:0px;  
+  transform: scaleY(0);    
+  transform-origin: 50% 0;
+
+  background:white;
+}
+
+
+div.article
+{
+    padding:5px;
+}
+
+div.article:nth-child(even)
+		     {
+			 background:#336699;
+		     }
+
+
+
+
+div.article:nth-child(odd)
+		     {
+			 background:#6699BB;
+
+		     }
+
+div.textArcticle p
+{    
+    text-align:justify;
+}
+
+
+
+
+
+#feed
+{
+    background:#779;
+}
+
+div#tag
+{
+    overflow-x:hidden;
+    width:20%;
+    position:fixed;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    background:#779;
+    overflow-y:scroll;
+}
+
+input#search_article
+{
+    display:block;
+    width:100%;
+}
+
+
+
+/* ----------------------------------------------------------------- */
+/* ---------------------annimation pro------------------------------ */
+/* ----------------------------------------------------------------- */
+
+@-moz-keyframes slidein {
+  from {
+      max-height:0px;
+  }
+      
+  to {
+      max-height:300px;
+  }
+}
+
+@-webkit-keyframes slidein {
+  from {
+            max-height:0px;
+  }
+  
+  to {
+      max-height:300px;      
+ }
+}
+
+@keyframes slidein {
+  from {
+      max-height:0px;
+  }  
+  to {
+      max-height:300px;
+ }
+}
+
+
+
+/* ------- not my code -------- */
+/* this code come to */
+/* http://callmenick.com/post/css-toggle-switch-examples */
+/* I use it because it was funny and the css it's not the important in this TP */
+
+input.cmn-toggle-yes-no + label {
+  padding: 2px;
+  width: 120px;
+
+}
+
+div.switch
+{
+    display:block;
+    position:relative;
+    margin-bottom: 20px;
+}
+
+input.cmn-toggle-yes-no + label:before,
+input.cmn-toggle-yes-no + label:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  font-family: "Roboto Slab", serif;
+  font-size: 20px;
+  text-align: center;
+
+}
+input.cmn-toggle-yes-no + label:before {
+  background-color: #dddddd;
+  content: attr(data-off);
+  transition: transform 0.5s;
+  backface-visibility: hidden;
+}
+input.cmn-toggle-yes-no + label:after {
+  background-color: #8ce196;
+  content: attr(data-on);
+  transition: transform 0.5s;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+input.cmn-toggle-yes-no:checked + label:before {
+  transform: rotateY(180deg);
+}
+input.cmn-toggle-yes-no:checked + label:after {
+  transform: rotateY(0);
+}

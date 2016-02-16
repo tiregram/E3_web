@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="feed"></div>
+    <div class="mainTextReader">
+      <div class="textArcticle"></div>
+    </div>
+    <div id="tag">
+      <div>
+	<h3>Option Click On Me</h3>
+	<!-- this block come to http://callmenick.com/post/css-toggle-switch-examples -->
+	<div class="switch">
+	  <input id="option-flux-or-article" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+	  <label for="option-flux-or-article" data-on="search rss flux" data-off="search Article"></label>
+	</div>
+
+	
+      </div>      
+      <input id="search_article_input" name="search_article" type="text" value="" placeholder="search"/>
+      <button id="search_tag_button">Search</button>
+      <div id="search_responce_contener"></div>
+    </div>
+    <script src="js/mscript.js"></script>
+  </body>
+</html>
+
+

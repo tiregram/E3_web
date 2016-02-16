@@ -1,0 +1,280 @@
+window.a = 1 ;
+window.numLigne = 0;
+
+
+$(window).scroll(function() {
+
+    if($(window).scrollTop() +2 *  $(window).height() > $(document).height() )
+    {
+	var a = {};
+	a.keyCode = 32;
+	for(var i =0 ;i<10;i++)
+	{
+	    addElement(a);
+	}
+    }
+   
+
+    
+});
+
+
+function updatePosition()
+{
+    var numMaxOfBlockInOneLigne = 1;
+    var sumOfAllBlock = 0;
+    
+    $(".inputLine").each(function(index)
+			 {
+			     sumOfAllBlock +=parseInt( $(this).val());
+
+			     if(numMaxOfBlockInOneLigne < $(this).val())
+			     {
+				 numMaxOfBlockInOneLigne = $(this).val();
+			     }
+			 }
+			);
+    
+    var sizeInPourcent = 100 / numMaxOfBlockInOneLigne ;
+
+
+    var prvBlockNum = 0;
+    
+    var tabOfMarginForEachLine = [0];
+    //calculate for each line the margin
+    //$(".block").css({background:"#FF0000",margin:"1%"});
+
+    var styleStringBuild = "";
+	
+    $(".inputLine").each(function(index)
+			 {
+			     var siz = (numMaxOfBlockInOneLigne -parseInt($(this).val()))*sizeInPourcent/2;
+			   
+			     styleStringBuild += "div.block:nth-child("+sumOfAllBlock+"n+"+(prvBlockNum+1)+
+				 "){ margin-left:"+(siz)+"%;}\n ";
+
+			     prvBlockNum += parseInt($(this).val());
+
+			     styleStringBuild += "div.block:nth-child("+sumOfAllBlock+"n+"+(prvBlockNum)+
+				 "){ margin-right:"+(siz)+"%;}\n ";			
+			     			   
+			  }
+			);+$(window).height()
+
+    
+    	
+
+    styleStringBuild += "div.block{ width  : "+sizeInPourcent+"%;}" ;
+
+    var sty = $("style");
+    sty.text(styleStringBuild);
+    
+    
+    // width for the first element
+   
+}
+
+$(document).ready(function(){
+
+    
+    setTimeout(tryToCleanTheTab,0);
+    var a = {};
+    a.keyCode = 32;
+    
+    for(var i = 0; i<50;i++)
+    {
+//	a.img = getNextImage();
+	addElement(a);
+    }
+    addLigne();
+
+
+    
+    $('#deleteLine').on('click',function(e)
+	   {
+	       if(window.numLigne != 1)
+		   $('div.ligne-'+window.numLigne--).remove();
+	       else
+		   alert("you need One Line!");
+
+	       updatePosition();
+	       
+	   });
+
+    
+
+    // line edition
+    $("#newLine").on('click',addLigne )
+
+
+    
+    $elem =  $(".block"); 
+
+
+
+    
+    $elem.on('click',function(e)
+	     {
+		 $(e.target)
+		     .fadeOut(
+			 300,
+			 function()
+			 {
+			     e.target.remove()
+			 }
+			 
+		     );
+	     }
+	     
+	    );
+    
+});
+
+
+$('body').keyup(addElement);
+
+
+
+// solve probleme with windows resize
+
+
+/* TODO
+ new Ligne event
+
+
+
+*/
+
+
+function addElement(event)
+{
+    if(event.keyCode == 32)
+    {
+	var div = $("<div>",
+		    {
+			class: "block",
+	//		style: "background:"+get_random_color()
+		    }
+		   ).text(window.a++);
+
+
+	
+	div.on('click',function(e){
+	    
+	    $(e.target).animate({width:0},"slow",
+	   
+				function()
+				{
+				    e.target.remove()
+				});
+	});
+
+	putImageInTheBackground(div);
+	
+	$(".principal").append(div);
+
+	
+//	updatePosition();
+	
+	
+    }
+		    
+}
+
+function addLigne(e)
+{
+    var n = ++window.numLigne;
+    
+    var label = $("<label>",
+		  {
+		      text:"ligne "+n,
+		  });
+    var input = $("<input>",
+		  {
+		      id:"ligne-"+n,
+		      class:"inputLine",
+		      type:"number",
+		      value:"3",
+		      max:"10",
+		      min:"1",
+		      
+		  })
+	.on("change",updatePosition);
+    
+    var ligne = $("<div>",
+		  {
+		      class:"ligne-"+n,
+		      
+		      
+		      
+		  })
+	.append(label,' ')
+	.append(input);
+    $('.ligneEdit').append(ligne);
+    updatePosition();
+}
+
+
+
+//come to stackoverflow.com/questions/1484506/random-color-generator-in-javascript
+function get_random_color() {
+  function c() {
+    return Math.floor(Math.random()*256).toString(16)
+  }
+  return "#"+c()+c()+c();
+}
+
+
+
+window.fifoImageLink = [];
+window.indiceOfTheImageToGet=0;
+window.realoadWhenTheIndiceEqualMe=0;
+window.tabOfElement= [];
+window.numPage = 1;
+
+function getNextImage()
+{
+    var url = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=78a7ad4f3ccccf5c86a8c03e3c09107b&extras=owner_name,url_m&format=json&nojsoncallback=1&page=";
+    
+    
+    $.getJSON(url+window.numPage++)
+	.done(function(data)
+	      {
+		  console.log("page:"+window.numPage)
+		  data.photos.photo.forEach(function(d){window.fifoImageLink.push(d.url_m)});
+	      }
+	     ); 
+}    
+
+function putImageInTheBackground(element)
+{
+    window.tabOfElement.push(element);
+}
+
+function tryToCleanTheTab()
+{
+
+    
+    if(window.tabOfElement.length != 0  )
+    {
+	
+	// check if one image are load in the list
+	if(window.fifoImageLink.length != 0){
+	    elem = window.tabOfElement.shift();
+	    
+	    elem.css({"background-image":"url(\""+window.fifoImageLink.shift()+"\")"});
+	    setTimeout(tryToCleanTheTab,10);
+	}else{
+	    
+	    getNextImage();
+	    setTimeout(tryToCleanTheTab,1000);
+	}
+    }else{
+	
+    	setTimeout(tryToCleanTheTab,2000);
+    }
+    
+}
+
+// update at ajax over
+// update at add element

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<link href="css/style.css" rel="stylesheet">
+<Title>JS 2</title>
+</head>
+<body onload="load()">
+
+
+<canvas id="canvaOpenGl" width="600" height="600">
+Ce navigateurs  ne supportent pas les  canvas.
+</canvas>
+
+<script id="shader-vs" type="x-shader/x-vertex">
+attribute vec3 aVertexPosition;
+attribute vec4 aVertexColor;
+
+uniform mat4 uMVMatrix;
+uniform mat4 uPMatrix;
+
+varying lowp vec4 vColor;
+
+void main(void) {
+gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+vColor = aVertexColor;
+}
+</script>
+
+<script id="shader-fs" type="x-shader/x-fragment">
+varying lowp vec4 vColor;
+  
+void main(void) {
+ 
+  gl_FragColor = vColor;
+  }
+</script>
+<script src="js/sylvester.js"></script>
+<script src="js/glUtils.js"></script>
+<script src="js/GLapi.js"></script>
+<script src="js/mysript.js" ></script>
+</body>
+
+</html>

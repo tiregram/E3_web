@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="js/jquery.js"></script>
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <h3>Possition Menu</h3>
+    <div>
+      <div class="ligneEdit">
+      </div>
+      <!--
+The size of a block is chose by the more importante
+	  
+
+The margin of the first element is chose by
+	  (nb_maxDeBlock - NumDansLaLigne) * size of one block / 2
+
+The selected element to margin  is 
+          (totalOfMaxInAllLigne) * N + sumToGoToThisElement
+-->
+      <button id="newLine">NEW Ligne</button>
+       <button id="deleteLine">DELL Ligne</button>
+    </div>
+    <div class="principal">
+    
+    </div>
+
+  </body>
+  <script src="js/myScript.js">
+    
+  </script>
+</html>
